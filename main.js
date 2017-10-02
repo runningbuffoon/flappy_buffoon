@@ -38,7 +38,6 @@ function runGame() {
 
 function handleKeyPress() {
 	for (var keyIndex in keyPresses) {
-		console.log(keyPresses);
 		switch (keyPresses[keyIndex]) {
 			case 'z':
 				jump();
