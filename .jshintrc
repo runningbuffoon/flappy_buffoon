@@ -1,0 +1,6 @@
+{
+	"enforceall": true,
+	"browser": true,
+	"devel": true,
+	"nonstandard": true
+}
