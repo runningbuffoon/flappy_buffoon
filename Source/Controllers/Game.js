@@ -6,14 +6,19 @@ function Game() {
 
 	this.activeScene = new Scene();
 
-	Game.prototype.handleKeyPress = function (event) {
+	var sceneLoop;
+
+	this.handleKeyPress = function (event) {
 		// maybe do something with the key
 		// then defer to activeScene
 		this.activeScene.handleKeyPress(event);
 	};
 
-	Game.prototype.start = function () {
+	this.start = function (painter) {
 		this.activeScene = this.scenes[0];
-		this.activeScene.start();
+		sceneLoop = setInterval(this.activeScene.loop, 1000 / 60);
+		setInterval(function () {
+			painter.paint(this.activeScene);
+		}, 1000 / 60);
 	};
 }
