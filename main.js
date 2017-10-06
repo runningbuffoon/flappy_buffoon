@@ -66,7 +66,7 @@ function handleObjects() {
 
 	if (cube.position.y <= 0) {
 		cube.position.y = 0;
-		cube.velocity.y = -cube.velocity.y / 1.5
+		cube.velocity.y = -cube.velocity.y / 1.5;
 	}
 
 	cube.velocity.y += 20 / 60;
