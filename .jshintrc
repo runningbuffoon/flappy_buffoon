@@ -2,5 +2,14 @@
 	"enforceall": true,
 	"browser": true,
 	"devel": true,
-	"nonstandard": true
+	"nonstandard": true,
+	"globals": {
+		"Painter": true,
+		"Game": true,
+		"Dimensions": true,
+		"Point": true,
+		"Scene": true,
+		"Sprite": true,
+		"Velocity": true
+	}
 }

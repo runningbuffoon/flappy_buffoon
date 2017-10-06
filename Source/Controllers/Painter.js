@@ -1,3 +1,5 @@
+/* exported Painter */
+
 function Painter() {
-	private var context = 
+	var context = null;
 }
