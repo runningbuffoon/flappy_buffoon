@@ -1,4 +1,5 @@
 /* exported ScenesProvider */
+"use strict";
 
 function ScenesProvider() {
 
@@ -35,8 +36,8 @@ function handleActor(scene) {
 	cube.position.x += cube.velocity.x;
 	cube.position.y += cube.velocity.y;
 
-	if (cube.position.y + cube.size >= 600) {
-		cube.position.y = 600 - cube.size;
+	if (cube.position.y + cube.dimension.height >= 600) {
+		cube.position.y = 600 - cube.dimension.height;
 		cube.velocity.y = -cube.velocity.y / 1.5;
 	}
 

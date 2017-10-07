@@ -16,9 +16,10 @@ function Game() {
 
 	this.start = function (painter) {
 		this.activeScene = this.scenes[0];
-		sceneLoop = setInterval(this.activeScene.loop, 1000 / 60);
+		var scene = this.activeScene;
 		setInterval(function () {
-			painter.paint(this.activeScene);
+			scene.loop();
+			painter.paint(scene);
 		}, 1000 / 60);
 	};
 }

@@ -1,4 +1,5 @@
 /* exported PhysicObject */
+"use strict";
 
 function PhysicObject(point2D, velocity2D, dimension, sprite) {
 	this.position = point2D;

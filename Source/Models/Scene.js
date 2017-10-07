@@ -1,4 +1,5 @@
 /* exported Scene */
+"use strict";
 
 function Scene() {
 	this.background = null;
