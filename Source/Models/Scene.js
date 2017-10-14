@@ -2,6 +2,7 @@
 "use strict";
 
 function Scene() {
+    this.gameDelegate = null;
 	this.background = null;
 
 	this.actor = null;

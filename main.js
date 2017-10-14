@@ -5,6 +5,7 @@ var context = canvas.getContext('2d');
 
 var game = new Game();
 var scene = new ScenesProvider().makeFlappy(new Scene());
+scene.gameDelegate = game;
 
 game.scenes.push(scene);
 

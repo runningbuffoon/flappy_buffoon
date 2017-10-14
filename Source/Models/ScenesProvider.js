@@ -17,6 +17,9 @@ function ScenesProvider() {
 
 			for (var objectIndex in scene.objects) {
 				handleObject(scene.objects[objectIndex]);
+                if (new Collision().detect(scene.actor,scene.objects[objectIndex])) {
+                    scene.gameDelegate.pause();
+                }
 			}
 		};
 
