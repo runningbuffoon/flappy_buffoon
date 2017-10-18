@@ -6,8 +6,11 @@ function ScenesProvider() {
 	ScenesProvider.prototype.makeFlappy = function (scene) {
 		scene.actor = new PhysicObject(new Point(50, 50), new Velocity(0, 0), new Dimensions(50, 50), null);
 
-		scene.objects.push(new PhysicObject(new Point(550, 0), new Velocity(-2, 0), new Dimensions(50, 200), null));
-		scene.objects.push(new PhysicObject(new Point(550, 400), new Velocity(-2, 0), new Dimensions(50, 200), null));
+		addTimelyObstacles(scene);
+
+		setInterval(function () {
+			addTimelyObstacles(scene);
+		}, 1500);
 
 		scene.handleKeyPress = handleKeyPress;
 
@@ -15,12 +18,31 @@ function ScenesProvider() {
 			//			handleKeyPress(scene);
 			handleActor(scene.actor);
 
+			var objectsWentOutOfBounds = false;
+
 			for (var objectIndex in scene.objects) {
-				handleObject(scene.objects[objectIndex]);
+				var object = scene.objects[objectIndex];
+				handleObject(object);
+
+				if (object.position.x + object.dimension.width < 0) {
+					objectsWentOutOfBounds = true;
+				}
+			};
+
+			if (objectsWentOutOfBounds) {
+				scene.objects.shift;
+				scene.objects.shift;
 			}
-		};
+		}
 
 		return scene;
+	}
+
+	function addTimelyObstacles(scene) {
+		var obsProv = new ObstacleProvider();
+		var obstacles = obsProv.getRandomObstaclePair(800, 50);
+		scene.objects.push(obstacles.topObstacle);
+		scene.objects.push(obstacles.bottomObstacle);
 	}
 }
 
@@ -77,8 +99,4 @@ function handleActor(cube) {
 function handleObject(object) {
 	object.position.x += object.velocity.x;
 	object.position.y += object.velocity.y;
-
-	if (object.position.x + object.dimension.width < 0) {
-		object.position.x = 800;
-	}
 }
