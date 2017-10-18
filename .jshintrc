@@ -7,8 +7,10 @@
 		"Painter": true,
 		"Game": true,
 		"Dimensions": true,
+		"ObstacleProvider": true,
 		"Point": true,
 		"Scene": true,
+		"ScenesProvider": true,
 		"Sprite": true,
 		"Velocity": true
 	}
