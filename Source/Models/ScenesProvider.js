@@ -15,7 +15,6 @@ function ScenesProvider() {
 		scene.handleKeyPress = handleKeyPress;
 
 		scene.loop = function () {
-			//			handleKeyPress(scene);
 			handleActor(scene.actor);
 
 			var objectsWentOutOfBounds = false;
