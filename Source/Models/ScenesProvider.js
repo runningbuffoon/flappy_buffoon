@@ -20,15 +20,16 @@ function ScenesProvider() {
 			var objectsWentOutOfBounds = false;
 
 			for (var objectIndex in scene.objects) {
-				handleObject(scene.objects[objectIndex]);
-                if (new Collision().detect(scene.actor,scene.objects[objectIndex])) {
+				var object = scene.objects[objectIndex];
+                handleObject(object);
+                if (new Collision().detect(scene.actor,object)) {
                     scene.gameDelegate.pause();
                 }
 
 				if (object.position.x + object.dimension.width < 0) {
 					objectsWentOutOfBounds = true;
 				}
-			};
+			}
 
 			if (objectsWentOutOfBounds) {
 				scene.objects.shift;
@@ -37,7 +38,7 @@ function ScenesProvider() {
 		}
 
 		return scene;
-	}
+    }
 
 	function addTimelyObstacles(scene) {
 		var obsProv = new ObstacleProvider();
