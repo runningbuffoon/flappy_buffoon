@@ -11,7 +11,9 @@ function Painter(context) {
 
 		for (var i in scene.objects) {
 			var object = scene.objects[i];
-			this.context.fillRect(object.position.x, object.position.y, object.dimension.width, object.dimension.height);
+			if (object.sprite === undefined || object.sprite.imageName !== "clear") {
+				this.context.fillRect(object.position.x, object.position.y, object.dimension.width, object.dimension.height);
+			}
 		}
 	};
 
