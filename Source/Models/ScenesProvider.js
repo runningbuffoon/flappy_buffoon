@@ -6,6 +6,8 @@ function ScenesProvider() {
 	ScenesProvider.prototype.makeFlappy = function (scene) {
 		scene.actor = new PhysicObject(new Point(50, 50), new Velocity(0, 0), new Dimensions(50, 50), null);
 
+		scene.score = 0;
+
 		addTimelyObstacles(scene);
 
 		setInterval(function () {
@@ -21,10 +23,18 @@ function ScenesProvider() {
 
 			for (var objectIndex in scene.objects) {
 				var object = scene.objects[objectIndex];
-                handleObject(object);
-                if (new Collision().detect(scene.actor,object)) {
-                    scene.gameDelegate.pause();
-                }
+				handleObject(object);
+				if (new Collision().detect(scene.actor, object)) {
+					if (object.sprite !== undefined && object.sprite.imageName === "clear") {
+						if (!object.hasScored) {
+							scene.score += 1;
+							document.getElementById("score").innerHTML = scene.score;
+							object.hasScored = true;
+						}
+					} else {
+						scene.gameDelegate.pause();
+					}
+				}
 
 				if (object.position.x + object.dimension.width < 0) {
 					objectsWentOutOfBounds = true;
@@ -34,16 +44,18 @@ function ScenesProvider() {
 			if (objectsWentOutOfBounds) {
 				scene.objects.shift;
 				scene.objects.shift;
+				scene.objects.shift;
 			}
 		}
 
 		return scene;
-    }
+	};
 
 	function addTimelyObstacles(scene) {
 		var obsProv = new ObstacleProvider();
 		var obstacles = obsProv.getRandomObstaclePair(800, 50);
 		scene.objects.push(obstacles.topObstacle);
+		scene.objects.push(obstacles.hole);
 		scene.objects.push(obstacles.bottomObstacle);
 	}
 }
