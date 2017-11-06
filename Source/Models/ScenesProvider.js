@@ -4,7 +4,7 @@
 function ScenesProvider() {
 
 	ScenesProvider.prototype.makeFlappy = function (scene) {
-		scene.actor = new PhysicObject(new Point(50, 50), new Velocity(0, 0), new Dimensions(50, 50), null);
+		scene.actor = new PhysicObject(new Point(50, 50), new Velocity(0, 0), new Dimensions(50, 50), new Sprite('./Source/Views/chapo.png'));
 
 		scene.score = 0;
 
