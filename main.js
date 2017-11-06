@@ -9,7 +9,13 @@ scene.gameDelegate = game;
 
 game.scenes.push(scene);
 
-game.start(new Painter(context));
+var painter = new Painter(context);
+
+painter.loadImages(scene, function () {
+	game.start(painter);
+});
+
+//game.start(new Painter(context));
 
 window.addEventListener('keydown', function (e) {
 	game.handleKeyPress(e.key);
