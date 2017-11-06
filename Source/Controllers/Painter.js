@@ -3,6 +3,17 @@
 
 function Painter(context) {
 	this.context = context;
+	var loadedImages = {
+		"actor": new Image(),
+		"objects": {}
+	};
+
+	Painter.prototype.loadImages = function (scene, callback) {
+		loadedImages.actor.src = scene.actor.sprite.imageName;
+		loadedImages.actor.onload = function () {
+			callback();
+		};
+	};
 
 	Painter.prototype.paint = function (scene) {
 		this.context.clearRect(0, 0, 800, 600);
@@ -22,15 +33,11 @@ function Painter(context) {
 		context.translate(actor.position.x + (actor.dimension.width / 2), actor.position.y + (actor.dimension.width / 2));
 		var angle = getActorAngle(actor);
 		context.rotate(angle * Math.PI / 180);
-		context.fillRect(-actor.dimension.width / 2, -actor.dimension.width / 2, actor.dimension.width, actor.dimension.height);
+		context.drawImage(loadedImages.actor, -actor.dimension.width / 2, -actor.dimension.width / 2, actor.dimension.width, actor.dimension.height);
 		context.restore();
 	}
 
 	function getActorAngle(actor) {
-		if (actor.velocity.y < 0) {
-			return 45 * (actor.velocity.y / 30);
-		} else {
-			return 45 * (actor.velocity.y / 30);
-		}
+		return 45 * (actor.velocity.y / 30);
 	}
 }
