@@ -4,7 +4,9 @@
 function ScenesProvider() {
 
 	ScenesProvider.prototype.makeFlappy = function (scene) {
-		scene.actor = new PhysicObject(new Point(50, 50), new Velocity(0, 0), new Dimensions(50, 50), new Sprite('./Source/Views/chapo.png'));
+		scene.actor = new PhysicObject(new Point(50, 50), new Velocity(0, 0), new Dimensions(50, 50), new Sprite('./Source/Views/citrapp.png'));
+		scene.background = new Sprite('./Source/Views/background.png');
+		scene.background.velocity = new Velocity(-1, 0);
 
 		scene.score = 0;
 
@@ -53,7 +55,7 @@ function ScenesProvider() {
 
 	function addTimelyObstacles(scene) {
 		var obsProv = new ObstacleProvider();
-		var obstacles = obsProv.getRandomObstaclePair(800, 50);
+		var obstacles = obsProv.getRandomObstaclePair(800, 20);
 		scene.objects.push(obstacles.topObstacle);
 		scene.objects.push(obstacles.hole);
 		scene.objects.push(obstacles.bottomObstacle);
