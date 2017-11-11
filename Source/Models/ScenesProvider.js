@@ -44,9 +44,9 @@ function ScenesProvider() {
 			}
 
 			if (objectsWentOutOfBounds) {
-				scene.objects.shift;
-				scene.objects.shift;
-				scene.objects.shift;
+				scene.objects.shift();
+				scene.objects.shift();
+				scene.objects.shift();
 			}
 		}
 
